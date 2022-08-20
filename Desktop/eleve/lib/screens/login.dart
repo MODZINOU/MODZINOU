@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:eleve/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -89,26 +90,17 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 40.0),
               Container(
-                height: 40.0,
-                child: Material(
-                  borderRadius: BorderRadius.circular(20.0),
-                  shadowColor: Colors.blueAccent,
-                  color: Colors.blue,
-                  elevation: 7.0,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Center(
-                      child: Text(
-                        'LOGIN',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Montserrat'),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+                  width: 200,
+                  height: 40.0,
+                  child: ElevatedButton(
+                    child: Text("Login"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Dashboard()),
+                      );
+                    },
+                  )),
               SizedBox(height: 20.0),
               Container(
                 height: 40.0,

@@ -1,5 +1,9 @@
 import 'dart:ui';
 
+import 'package:eleve/components/activities/index.dart';
+import 'package:eleve/components/batiment/index.dart';
+import 'package:eleve/components/fermes/index.dart';
+import 'package:eleve/components/materiau/index.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -10,13 +14,13 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard>
-     {
-  
+class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 216, 222, 231),
       appBar: AppBar(
+        backgroundColor: Color(0xFF103900),
         title: Text("Elevage"),
         centerTitle: true,
         actions: [
@@ -24,12 +28,54 @@ class _DashboardState extends State<Dashboard>
               onPressed: null,
               icon: Icon(
                 Icons.notifications,
-                size: 35,
+                size: 25,
                 color: Colors.white,
               ))
         ],
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+          child: Column(
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+            decoration: BoxDecoration(
+              color: Color(0xFF103900),
+            ),
+            arrowColor: Color(0xFF103900),
+            accountEmail: Text(
+              '@User',
+              style: TextStyle(fontSize: 12),
+            ),
+            accountName: Text(
+              'user',
+              style: TextStyle(fontSize: 20),
+            ),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: AssetImage("assets/Images/profilePic.jpg"),
+            ),
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.circleInfo,
+              color: Colors.green,
+            ),
+            title: Text('A propos', style: TextStyle(fontSize: 16)),
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.gear,
+              color: Colors.green,
+            ),
+            title: Text('Paramètres', style: TextStyle(fontSize: 16)),
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.signOut,
+              color: Colors.green,
+            ),
+            title: Text('Se déconnecter', style: TextStyle(fontSize: 16)),
+          ),
+        ],
+      )),
       body: SingleChildScrollView(
           child: Column(
         children: [
@@ -37,173 +83,171 @@ class _DashboardState extends State<Dashboard>
             height: 15,
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(25))),
-              child: Card(
-                child: Container(
-                  // margin: EdgeInsets.only(top: 20, left: 40, right: 40, bottom: 20),
-                  padding: EdgeInsets.all(15),
-                  height: 80,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Portefeuille",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
-                            Text(
-                              "500 F",
-                              style: TextStyle(fontSize: 18),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    Icon(Icons.timelapse, size: 30),
-                                    Text(
-                                      "Historique",
-                                      style: TextStyle(fontSize: 16),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  children: [
-                                    Icon(
-                                      Icons.add,
-                                      size: 30,
-                                    ),
-                                    Text("Recharger",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                        ))
-                                  ],
-                                ),
-                              ],
-                            )
-                          ],
-                        )
-                      ]),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 8.0, left: 40, right: 40),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.filter_frames,
-                          color: Colors.green,
-                          size: 40,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Fermes()),
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Column(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.cow,
+                              color: Colors.green,
+                              size: 40,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Fermes"),
+                            ),
+                          ],
                         ),
-                        Text("Ferme"),
-                      ],
+                      ),
                     ),
                   ),
                 ),
                 Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.house_sharp,
-                          color: Colors.green,
-                          size: 40,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Batiment()),
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Column(
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.home,
+                              color: Colors.green,
+                              size: 40,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Bâtiment"),
+                            ),
+                          ],
                         ),
-                        Text("Bâtiment"),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.house_outlined,
-                          color: Colors.green,
-                          size: 40,
-                        ),
-                        Text("Animaux"),
-                      ],
-                    ),
-                  ),
-                ),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.storage_sharp,
-                          color: Colors.green,
-                          size: 40,
-                        ),
-                        Text("Matériaux"),
-                      ],
-                    ),
-                  ),
-                ),
+                // Card(
+                //   child: Container(
+                //     width: MediaQuery.of(context).size.width / 4.2,
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(14.0),
+                //       child: Column(
+                //         children: [
+                //           Icon(
+                //             Icons.house_outlined,
+                //             color: Colors.green,
+                //             size: 40,
+                //           ),
+                //           Text("Animaux"),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 8.0, left: 40, right: 40),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.local_activity_sharp,
-                          color: Colors.green,
-                          size: 40,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Materiau()),
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.storage_sharp,
+                              color: Colors.green,
+                              size: 40,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Matériau"),
+                            ),
+                          ],
                         ),
-                        Text("Activités"),
-                      ],
+                      ),
                     ),
                   ),
                 ),
                 Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Column(
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.sellcast,
-                          color: Colors.green,
-                          size: 40,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Activities()),
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.local_activity_sharp,
+                              color: Colors.green,
+                              size: 40,
+                            ),
+                            // ignore: prefer_const_constructors
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Activités"),
+                            ),
+                          ],
                         ),
-                        Text("Vente"),
-                      ],
+                      ),
                     ),
                   ),
                 ),
+                // Card(
+                //   child: Container(
+                //     width: MediaQuery.of(context).size.width / 4.2,
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(14.0),
+                //       child: Column(
+                //         children: [
+                //           FaIcon(
+                //             FontAwesomeIcons.sellcast,
+                //             color: Colors.green,
+                //             size: 40,
+                //           ),
+                //           Text("Vente"),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

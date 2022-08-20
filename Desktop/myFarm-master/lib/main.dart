@@ -1,7 +1,5 @@
-import 'package:eleve/screens/dashboard.dart';
+import 'package:farm/screens/login/index.dart';
 import 'package:flutter/material.dart';
-import 'package:eleve/screens/login.dart';
-import 'package:eleve/screens/animal.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.green,
